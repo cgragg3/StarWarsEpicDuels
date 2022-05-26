@@ -101,12 +101,16 @@ public:
 
 	//view info on char
 	void seeChar()
-	{
+	{	
+		cout << "***************************" << endl;
 		std::cout <<"Player: " << charnum<< std::endl << "Character: " << name << std::endl << std::endl;
 		std::cout << "HP: " << hitpoint << std::endl<< std::endl;
 		std::cout << "Draw pile: " << card.drawpile() << std::endl << "Discard pile: " << card.discardpile() << std::endl << std::endl;
-
+		
+		cout << "<<<<<<<<<< Hand <<<<<<<<<<" << endl;
 		card.viewHand();
+		cout << ">>>>>>>>>>>>>>>>>>>>" << endl;
+		cout << "***************************" << endl;
 	}
 	
 

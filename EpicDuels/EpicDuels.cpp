@@ -57,13 +57,6 @@ int main()
     Map gm(2);
     gm.addPlayer(obw, 1,1);
     gm.addPlayer(dm, 4, 8);
-  
-    
-
-
-
-
-
 
     
     char mChoice = '0';
@@ -77,6 +70,7 @@ int main()
         cout << "Q - Quit" << endl << endl;
         cout << "Selection: ";
         cin >> mChoice;
+        mChoice = toupper(mChoice);
 
         while (!((mChoice == 'S')|| (mChoice == 'Q')))
         {

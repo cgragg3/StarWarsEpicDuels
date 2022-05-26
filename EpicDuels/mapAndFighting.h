@@ -200,7 +200,8 @@ public:
 
 	void action()
 	{
-		system("clear");
+		system("CLS");
+		cout << "=============== Start of turn "<< (turn + 1) <<" =================" << endl;
 		seeMap();
 		// seeinfo();
 		moveCharacter();
@@ -213,17 +214,18 @@ public:
 			int playToAttack= 0;
 			int cardToAttack = 0;
 			//menu setup
-			// system("clear");
+			// system("CLS");
 			// seeMap();
 			// seeinfo();
 			// cout << "TEST 2";
 			cout << endl;
-			cout << "ACTION:" << endl;
+			cout << "ACTIONS:" << endl;
 			cout << "D - Draw a card" << endl;
 			cout << "A - Attack" << endl;
 			cout << "H - View Hand" << endl << endl;
 			cout << "Selection: ";
 			cin >> mChoice;
+			mChoice = toupper(mChoice);
 
 			while (!((mChoice == 'D') || (mChoice == 'A') || (mChoice == 'H')))
 			{
@@ -231,6 +233,7 @@ public:
 				cin.clear();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				cin >> mChoice;
+				mChoice = toupper(mChoice);
 			}
 
 
@@ -239,12 +242,13 @@ public:
 				players.at(who).drawCard();
 				oneTurn();
 				mChoice = '0';
+				cout << "=============== End of turn "<< turn <<" =================" << endl;
 				break;
 			case 'H':   //input A add vehicle
 				seeinfo();
 				break;
 			case 'A':
-				system("clear");
+				system("CLS");
 				cout << "Who would you like to attack" << endl;
 				for (int a = 0; a < players.size(); a++)
 				{
@@ -262,15 +266,16 @@ public:
 				attack(playToAttack, cardToAttack);
 				mChoice = '0';
 				system("pause");
+				cout << "=============== End of turn "<< turn <<" =================" << endl;
 				break;
 			default:
-				system("clear");
+				system("CLS");
 				oneTurn();
 				cout << "Next players turn" << endl;
 			}
 
 		}
-		system("clear");
+		system("CLS");
 		oneTurn();
 		cout << "Next players turn" << endl;
 	}
