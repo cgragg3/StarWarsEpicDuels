@@ -6,6 +6,7 @@
 #include "Dice.h"
 #include "CardNorm.h"
 #include "Deck.h"
+#include <time.h>
 
 using namespace std;
 
