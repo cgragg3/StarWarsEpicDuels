@@ -15,11 +15,11 @@ public:
 	//constructor add number of players to be added
 	Map(int n = 2)
 	{
-		
+
 		numPlayers = n;
 		turn = 0;
 		who = 0;
-		
+
 	}
 
 	//enter character then placement on map x,y
@@ -107,7 +107,7 @@ public:
 	//move character
 	void moveCharacter()
 	{
-		
+
 		int posi = rolldice();
 		int x = findX(who);
 		int y = findY(who);
@@ -117,6 +117,7 @@ public:
 		int dy = 0;
 		do
 		{
+			cout <<endl << "You rolled: " << posi << endl;
 			cout <<endl << "enter a new position within " << posi << " spaces of yourself" << endl;
 
 			cout << "x: ";
@@ -130,10 +131,10 @@ public:
 			if (dy < 0)
 				dy = y - ny;
 		} while (dy + dx > posi);
-		
+
 		mp[nx][ny] = players.at(who);
 		mp[x][y].setPlayer(-3);
-		
+
 	}
 
 	int findX(int x)
@@ -161,7 +162,7 @@ public:
 		}
 		return -1;
 	}
-	
+
 	bool inRange(Character d)
 	{
 		int mx = findX(who);
@@ -176,7 +177,7 @@ public:
 				return true;
 			else
 				return false;
-			
+
 		}
 		else
 		{
@@ -198,27 +199,32 @@ public:
 
 	void action()
 	{
-		system("CLS");
+		system("clear");
 		seeMap();
-		seeinfo();
+		// seeinfo();
 		moveCharacter();
 
 		char mChoice = '0';
+		// cout << "TEST 1";
 		//error checking selection menu setup and selection execution
 		while (turn < 2)
 		{
 			int playToAttack= 0;
 			int cardToAttack = 0;
 			//menu setup
-			system("CLS");
-			seeMap();
-			seeinfo();
-			cout << "D - Draw a card" << endl << endl;
-			cout << "A - Attack" << endl << endl;
+			// system("clear");
+			// seeMap();
+			// seeinfo();
+			// cout << "TEST 2";
+			cout << endl;
+			cout << "ACTION:" << endl;
+			cout << "D - Draw a card" << endl;
+			cout << "A - Attack" << endl;
+			cout << "H - View Hand" << endl << endl;
 			cout << "Selection: ";
 			cin >> mChoice;
 
-			while (!((mChoice == 'D') ||(mChoice == 'A')))
+			while (!((mChoice == 'D') || (mChoice == 'A') || (mChoice == 'H')))
 			{
 				cout << "You must enter one of the listed characters " << endl;
 				cin.clear();
@@ -233,8 +239,11 @@ public:
 				oneTurn();
 				mChoice = '0';
 				break;
-			case 'A':   
-				system("CLS");
+			case 'H':   //input A add vehicle
+				seeinfo();
+				break;
+			case 'A':
+				system("clear");
 				cout << "Who would you like to attack" << endl;
 				for (int a = 0; a < players.size(); a++)
 				{
@@ -254,13 +263,13 @@ public:
 				system("pause");
 				break;
 			default:
-				system("CLS");
+				system("clear");
 				oneTurn();
 				cout << "Next players turn" << endl;
 			}
-			
+
 		}
-		system("CLS");
+		system("clear");
 		oneTurn();
 		cout << "Next players turn" << endl;
 	}
@@ -271,6 +280,6 @@ private:
 	int numPlayers;
 	Character mp[5][10];
 	vector<Character> players;
-	
+
 };
 
