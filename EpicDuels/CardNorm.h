@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 
+#include "Special.h"
+
 using namespace std;
 
 class NCard
@@ -19,20 +21,27 @@ public:
 		//image = i;
 	}
 
-	void special(bool s)
+	
+	//set card to special
+	void special(int num)
 	{
-		isSpecial = s;
+		isSpecial = true;
+		specialcard.setCard(num);
 	}
 	
 	//return attack damage
-	int getAttack() const
+	int getAttack() 
 	{
+		if (isSpecial)
+			return specialcard.getSAttack();
 		return attack;
 	}
 
 	//return defense
-	int getDefense() const
+	int getDefense()
 	{
+		if (isSpecial)
+			return specialcard.getSDefense();
 		return defense;
 	}
 
@@ -67,18 +76,39 @@ public:
 		if (isSpecial == 0)
 		{
 			cout << "Card Number: " << cardnumber << endl;
-			cout << "Attack: "<<attack<< endl;
-			cout << "Defense: " << defense<< endl << endl;
+			cout << "Attack: " << attack << endl;
+			cout << "Defense: " << defense << endl << endl;
 		}
 		else
-			cout << "not ready yet";
+		{
+			cout << "Card Number: " << cardnumber << endl;
+			specialcard.print();
+		}
+	}
+	
+
+	//get special nubmer
+	int getAbility()
+	{
+		return specialcard.useAbility();
 	}
 
+	//get special ability number
+	int getabilityNumber()
+	{
+		return specialcard.getAbility();
+	}
 
+	//check if special
+	bool isitSpecial()
+	{
+		return isSpecial;
+	}
 private:
 	int cardnumber;
 	int attack;
 	int defense;
 	bool isSpecial;
+	SpecialCards specialcard;
 	//string image;
 };
