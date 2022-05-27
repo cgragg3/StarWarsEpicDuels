@@ -39,6 +39,7 @@ public:
 	//draw a card
 	void draw()
 	{
+		
 		NCard move;
 		if (dek.size() == 0)
 		{
