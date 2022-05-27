@@ -17,6 +17,9 @@ int main()
     Character dm("Darth Maul", 32, 1, false);
     Character dv("Darth Vader", 32, 2, false);
 
+    NCard jediAttack(10, 0, 0, true);
+    jediAttack.special(1);
+
     NCard n0(0, 2, 3, false);
     NCard n1(1, 4, 1, false);
     NCard n2(2, 1, 4, false);
@@ -38,6 +41,7 @@ int main()
     obw.addnCard(n7);
     obw.addnCard(n8);
     obw.addnCard(n9);
+    obw.addnCard(jediAttack);
 
     dm.addnCard(n0);
     dm.addnCard(n2);

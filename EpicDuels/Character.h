@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Deck.h"
 #include "CardNorm.h"
+#include "Special.h"
 
 using namespace std;
 
@@ -113,8 +114,22 @@ public:
 		std::cout << "Draw pile: " << card.drawpile() << std::endl << "Discard pile: " << card.discardpile() << std::endl << std::endl;
 
 		card.viewHand();
+		
+	}
+
+	//check if card is special
+	bool checkspecial(int c)
+	{
+		if (card.getCard(c).isitSpecial())
+			return true;
+		return false;
 	}
 	
+	//get ability number
+	int getSpecialAbilityidentifier(int c)
+	{
+		return card.getCard(c).getabilityNumber();
+	}
 
 private:
 	string name;

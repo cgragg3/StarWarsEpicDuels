@@ -147,6 +147,7 @@
     <ClInclude Include="Deck.h" />
     <ClInclude Include="Dice.h" />
     <ClInclude Include="mapAndFighting.h" />
+    <ClInclude Include="Special.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="test.png" />

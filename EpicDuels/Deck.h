@@ -60,7 +60,10 @@ public:
 	void viewHand()
 	{
 		if (hand.size() == 0)
+		{
 			std::cout << "no cards in hand" << std::endl << std::endl;
+			return;
+		}
 		for (int a = 0; a < hand.size(); a++)
 		{
 			hand.at(a).printcard();
@@ -97,6 +100,17 @@ public:
 		shuffle(std::begin(dek), std::end(dek), rng);
 	}
 	
+	//get card
+	NCard getCard(int n)
+	{
+		for (int a = 0; a < hand.size(); a++)
+		{
+			if (n == hand.at(a).getCardNumber())
+			{
+				return hand.at(a);
+			}
+		}
+	}
 
 private:
 	int numberOfCards;

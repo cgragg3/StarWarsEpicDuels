@@ -57,12 +57,25 @@ public:
 		int dam = 0;
 		int def = 0;
 		int cardn = 0;
+		bool ex = false;
+		int ab = 0;
 		Character d = players.at(p);
 		string y;
 		if (inRange(d))
 		{
+			if (players.at(who).checkspecial(c))
+			{
+				
+				if (players.at(who).getSpecialAbilityidentifier(c) == 1)
+				{
+					dam = players.at(who).useAttack(c);
+					ex = true;
+					ab = 1;
+				}
 
-			dam = players.at(who).useAttack(c);
+			}
+			else
+				dam = players.at(who).useAttack(c);
 			system("CLS");
 			cout << "defender do you wish to defend? yes or no:  ";
 			cin >> y;
@@ -82,6 +95,19 @@ public:
 				cout << "Player " << d.getName() << " has recieved " << dam << " damage" << endl;
 				players.at(p).takeDamage(dam);
 			}
+			system("CLS");
+			system("pause");
+			system("CLS");
+			if (ex)
+			{
+				if (ab == 1)
+				{
+					seeMap();
+					moveCharacter(6);
+				}
+			}
+			
+			
 			oneTurn();
 		}
 		else
@@ -109,10 +135,10 @@ public:
 	}
 
 	//move character
-	void moveCharacter()
+	void moveCharacter(int a)
 	{
 		
-		int posi = rolldice();
+		int posi = a;
 		int x = findX(who);
 		int y = findY(who);
 		int nx = 0;
@@ -210,7 +236,7 @@ public:
 		system("CLS");
 		seeMap();
 		seeinfo();
-		moveCharacter();
+		moveCharacter(rolldice());
 
 		char mChoice = '0';
 		//error checking selection menu setup and selection execution
@@ -244,17 +270,20 @@ public:
 				mChoice = '0';
 				break;
 			case 'A':   
-				system("CLS");
-				cout << "Who would you like to attack" << endl;
-				for (int a = 0; a < players.size(); a++)
+				do
 				{
-					if (!(a == who))
-						cout << "Player " << players.at(a).getPlayer() << ": " << players.at(a).getName() << ", hp: " << players.at(a).getHp() << endl;
-					else
-						continue;
-				}
-				cout << "Selection: ";
-				cin >> playToAttack;
+					system("CLS");
+					cout << "Who would you like to attack" << endl;
+					for (int a = 0; a < players.size(); a++)
+					{
+						if (!(a == who))
+							cout << "Player " << players.at(a).getPlayer() << ": " << players.at(a).getName() << ", hp: " << players.at(a).getHp() << endl;
+						else
+							continue;
+					}
+					cout << "Selection: ";
+					cin >> playToAttack;
+				} while (!(inRange(players.at(playToAttack))));
 				cout << "Which card would you like to attack with " << endl;
 				seeinfo();
 				cout << "Selection: ";
