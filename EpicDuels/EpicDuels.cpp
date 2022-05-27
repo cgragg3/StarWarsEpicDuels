@@ -15,6 +15,7 @@ int main()
 
     Character obw("obiwan kenobi", 32, 0, true);
     Character dm("Darth Maul", 32, 1, false);
+    Character dv("Darth Vader", 32, 2, false);
 
     NCard n0(0, 2, 3, false);
     NCard n1(1, 4, 1, false);
@@ -47,16 +48,29 @@ int main()
     dm.addnCard(n7);
     dm.addnCard(n8);
     dm.addnCard(n9);
+
+    dv.addnCard(n0);
+    dv.addnCard(n2);
+    dv.addnCard(n3);
+    dv.addnCard(n4);
+    dv.addnCard(n5);
+    dv.addnCard(n6);
+    dv.addnCard(n7);
+    dv.addnCard(n8);
+    dv.addnCard(n9);
+
     for (int a = 0; a < 3; a++)
     {
         dm.drawCard();
         obw.drawCard();
+        dv.drawCard();
 
     }
 
-    Map gm(2);
+    Map gm(3);
     gm.addPlayer(obw, 1,1);
     gm.addPlayer(dm, 4, 8);
+    gm.addPlayer(dv, 4, 5);
   
     
 

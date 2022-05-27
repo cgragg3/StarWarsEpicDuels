@@ -96,9 +96,15 @@ public:
 	{
 		NCard c;
 		c = card.useCard(a);
-		return c.getAttack();
+		return c.getDefense();
 	}
 
+	//discard card
+	void discardToHeal(int c)
+	{
+		card.useCard(c);
+		setHp(hitpoint + 1);
+	}
 	//view info on char
 	void seeChar()
 	{

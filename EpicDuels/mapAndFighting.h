@@ -63,15 +63,16 @@ public:
 		{
 
 			dam = players.at(who).useAttack(c);
+			system("CLS");
 			cout << "defender do you wish to defend? yes or no:  ";
 			cin >> y;
 			if (y == "yes")
 			{
-				system("CLR");
+				
 				cout << "enter card number you want to use to defend: ";
 				d.seeChar();
 				cin >> cardn;
-				def = d.useDefense(c);
+				def = players.at(p).useDefense(cardn);
 			}
 			dam = dam - def;
 			if (dam < 0)
@@ -90,9 +91,12 @@ public:
 	//see map
 	void seeMap()
 	{
+		cout << " ";
+		for (int a = 0; a < 10; a++)
+			cout << " " << a;
 		for (int x = 0; x < 5; x++)
 		{
-			cout << endl;
+			cout << endl << x <<" ";
 			for (int y = 0; y < 10; y++)
 			{
 				if (mp[x][y].getPlayer() <0)
@@ -120,16 +124,21 @@ public:
 			cout <<endl << "enter a new position within " << posi << " spaces of yourself" << endl;
 
 			cout << "x: ";
-			cin >> nx;
-			cout << "y: ";
 			cin >> ny;
+			cout << "y: ";
+			cin >> nx;
 			dx = nx - x;
 			dy = ny - y;
 			if (dx < 0)
 				dx = x - nx;
 			if (dy < 0)
 				dy = y - ny;
-		} while (dy + dx > posi);
+			if (nx == x && ny == y)
+			{
+				return;
+			}
+		} while (dy + dx > posi || (mp[nx][ny].getPlayer() >(-1)));
+		
 		
 		mp[nx][ny] = players.at(who);
 		mp[x][y].setPlayer(-3);
@@ -215,10 +224,11 @@ public:
 			seeinfo();
 			cout << "D - Draw a card" << endl << endl;
 			cout << "A - Attack" << endl << endl;
+			cout << "H - Heal by discarding one card" << endl << endl;
 			cout << "Selection: ";
 			cin >> mChoice;
 
-			while (!((mChoice == 'D') ||(mChoice == 'A')))
+			while (!((mChoice == 'D') ||(mChoice == 'A') || (mChoice == 'H')))
 			{
 				cout << "You must enter one of the listed characters " << endl;
 				cin.clear();
@@ -252,6 +262,14 @@ public:
 				attack(playToAttack, cardToAttack);
 				mChoice = '0';
 				system("pause");
+				break;
+			case 'H':   //input A add vehicle
+				cout << "Which card would you like to discard? " << endl;
+				cout << "Selection: ";
+				cin >> cardToAttack;
+				players.at(who).discardToHeal(cardToAttack);
+				oneTurn();
+				mChoice = '0';
 				break;
 			default:
 				system("CLS");
