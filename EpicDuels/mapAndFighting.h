@@ -72,7 +72,14 @@ public:
 					ex = true;
 					ab = 1;
 				}
+				if (players.at(who).getSpecialAbilityidentifier(c) == 2)
+				{
 
+					dam = players.at(who).useAttack(c);
+					ex = true;
+					ab = 2;
+				}
+				
 			}
 			else
 				dam = players.at(who).useAttack(c);
@@ -88,6 +95,7 @@ public:
 				def = players.at(p).useDefense(cardn);
 			}
 			dam = dam - def;
+			system("CLS");
 			if (dam < 0)
 				cout << "no damage given" << endl;
 			else
@@ -95,7 +103,7 @@ public:
 				cout << "Player " << d.getName() << " has recieved " << dam << " damage" << endl;
 				players.at(p).takeDamage(dam);
 			}
-			system("CLS");
+			
 			system("pause");
 			system("CLS");
 			if (ex)
@@ -103,7 +111,15 @@ public:
 				if (ab == 1)
 				{
 					seeMap();
-					moveCharacter(6);
+					moveCharacter(6, who);
+				}
+				if (ab == 2)
+				{
+					seeMap();
+					cout << "where would you like to move Obi-Wan Kenobi? ";
+					moveCharacter(3, who);
+					cout << "where would you like ot move " << d.getName() << "? ";
+					moveCharacter(3, p);
 				}
 			}
 			
@@ -135,12 +151,12 @@ public:
 	}
 
 	//move character
-	void moveCharacter(int a)
+	void moveCharacter(int a, int b)
 	{
 		
 		int posi = a;
-		int x = findX(who);
-		int y = findY(who);
+		int x = findX(b);
+		int y = findY(b);
 		int nx = 0;
 		int ny = 0;
 		int dx = 0;
@@ -166,7 +182,7 @@ public:
 		} while (dy + dx > posi || (mp[nx][ny].getPlayer() >(-1)));
 		
 		
-		mp[nx][ny] = players.at(who);
+		mp[nx][ny] = players.at(b);
 		mp[x][y].setPlayer(-3);
 		
 	}
@@ -236,7 +252,7 @@ public:
 		system("CLS");
 		seeMap();
 		seeinfo();
-		moveCharacter(rolldice());
+		moveCharacter(rolldice(),who);
 
 		char mChoice = '0';
 		//error checking selection menu setup and selection execution
