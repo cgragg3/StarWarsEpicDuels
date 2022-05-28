@@ -20,6 +20,8 @@ public:
 			jediAttack();
 		if (n == 2)
 			forceControl();
+		if (n == 3)
+			forceBlock();
 	}
 	
 	int useAbility()
@@ -30,6 +32,8 @@ public:
 			return jediAttack();
 		if (card == 2)
 			return forceControl();
+		if (card == 3)
+			return forceBlock();
 	}
 	//get ability number
 	int getAbility()
@@ -72,6 +76,15 @@ public:
 		return attack = 5;
 	}
 
+	//obiwan force block
+	int forceBlock()
+	{
+		card = 3;
+		carname = "Force Block";
+		abil = "Draw a card";
+		attack = 0;
+		return defense = 12;
+	}
 
 	void print()
 	{

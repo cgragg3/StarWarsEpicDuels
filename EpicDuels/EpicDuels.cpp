@@ -18,7 +18,7 @@ int main()
     Character dv("Darth Vader", 32, 2, false);
 
     NCard sp(10, 0, 0, true);
-    sp.special(2);
+    sp.special(3);
 
     NCard n0(0, 2, 3, false);
     NCard n1(1, 4, 1, false);
@@ -41,7 +41,7 @@ int main()
     obw.addnCard(n7);
     obw.addnCard(n8);
     obw.addnCard(n9);
-    obw.addnCard(jediAttack);
+    
 
     dm.addnCard(n0);
     dm.addnCard(n2);
@@ -62,6 +62,7 @@ int main()
     dv.addnCard(n7);
     dv.addnCard(n8);
     dv.addnCard(n9);
+    dv.addnCard(sp);
 
     for (int a = 0; a < 3; a++)
     {
