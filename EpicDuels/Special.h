@@ -7,7 +7,7 @@ using namespace std;
 class SpecialCards
 {
 public:
-	//create a special card with card number and if it is attack/defense or just special
+	//create a special card 
 	SpecialCards()
 	{
 		card = 0;
@@ -18,6 +18,8 @@ public:
 	{
 		if (n == 1)
 			jediAttack();
+		if (n == 2)
+			forceControl();
 	}
 	
 	int useAbility()
@@ -26,6 +28,8 @@ public:
 			cout << "not a special card";
 		if (card == 1)
 			return jediAttack();
+		if (card == 2)
+			return forceControl();
 	}
 	//get ability number
 	int getAbility()
@@ -52,11 +56,20 @@ public:
 	int jediAttack()
 	{
 		card = 1;
-		combat = true;
 		carname = "Jedi Attack";
 		abil = "After attacking, you may move obi-wan kenobi up to 6 spaces";
 		defense = 0;
 		return attack = 6;
+	}
+
+	//obiwan force control
+	int forceControl()
+	{
+		card = 2;
+		carname = "Force Control";
+		abil = "After attacking you may move Obi-Wan and the attacked character up to three spaces each";
+		defense = 0;
+		return attack = 5;
 	}
 
 
