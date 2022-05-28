@@ -59,6 +59,8 @@ public:
 		int cardn = 0;
 		bool ex = false;
 		int ab = 0;
+		bool ex2 = false;
+		int ab2 = 0;
 		Character d = players.at(p);
 		string y;
 		if (inRange(d))
@@ -92,6 +94,17 @@ public:
 				cout << "enter card number you want to use to defend: ";
 				d.seeChar();
 				cin >> cardn;
+				if (players.at(p).checkspecial(cardn))
+				{
+
+					if (players.at(p).getSpecialAbilityidentifier(cardn) == 3)
+					{
+						def = players.at(p).useDefense(cardn);
+						ex2 = true;
+						ab2 = 3;
+					}
+				}
+				else
 				def = players.at(p).useDefense(cardn);
 			}
 			dam = dam - def;
@@ -106,7 +119,7 @@ public:
 			
 			system("pause");
 			system("CLS");
-			if (ex)
+			if (ex || ex2)
 			{
 				if (ab == 1)
 				{
@@ -120,6 +133,10 @@ public:
 					moveCharacter(3, who);
 					cout << "where would you like ot move " << d.getName() << "? ";
 					moveCharacter(3, p);
+				}
+				if (ab2 == 3)
+				{
+					players.at(p).drawCard();
 				}
 			}
 			
